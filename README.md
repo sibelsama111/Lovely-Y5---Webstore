@@ -1,33 +1,31 @@
-📦 LovelyY5
+**LovelyY5 - Webstore**
 
 LovelyY5 es un proyecto de tienda online desarrollado como parte de la Evaluación 1 de DSY1104.
 Incluye vistas de inicio, listado de productos, detalle, carrito de compras con persistencia en LocalStorage, juego interactivo, formularios con validaciones y una intranet básica.
+------
 
-📸 Capturas de ejemplo
 
-(puedes agregar imágenes de tu proyecto aquí, en una carpeta screenshots/)
 
-🚀 Tecnologías utilizadas
+**Tecnologías utilizadas**
 
-HTML5 para la estructura de las vistas
+**HTML5** para la estructura de las vistas
 
-CSS3 y Bootstrap 5.3.2 para estilos y diseño responsivo
+**CSS3** y **Bootstrap** 5.3.2 para estilos y diseño responsivo
 
-JavaScript (ES6) para lógica de negocio, validaciones y dinámicas del DOM
+**JavaScript (ES6)** para lógica de negocio, validaciones y dinámicas del **DOM**
 
-LocalStorage para persistencia del carrito de compras
+**LocalStorage** para persistencia del carrito de compras
 
-Live Server (localhost:5500) para pruebas locales
+**Live Server (localhost:5500)** para pruebas locales
 
-Git y GitHub para control de versiones
+**Git y GitHub** para control de versiones
+------
 
-⚙️ Instalación y ejecución local
 
-Clonar el repositorio:
 
-git clone https://github.com/TU-USUARIO/LovelyY5.git
-cd LovelyY5
+**Instalación y ejecución local**
 
+Abrir repositorio en VS Code.
 
 Instalar Live Server en VS Code (extensión).
 
@@ -35,9 +33,14 @@ Abrir el proyecto en VS Code → botón derecho en index.html → Open with Live
 
 Acceder desde el navegador:
 
-http://localhost:5500/
+http://localhost:5500/index.html
 
-📋 Requisitos funcionales
+Listo para funcionar :)
+------
+
+
+
+**Requisitos funcionales**
 
 Registro y login de usuarios con validaciones (RUT, correo y contraseñas).
 
@@ -52,8 +55,11 @@ Validaciones de formularios de contacto y registro según rúbrica.
 Juego interactivo (“Juego de la Suerte”).
 
 Intranet básica para administradores.
+------
 
-📋 Requisitos no funcionales
+
+
+**Requisitos no funcionales**
 
 Diseño responsivo y consistente.
 
@@ -62,8 +68,11 @@ Código modularizado (HTML, CSS y JS separados).
 Mensajes de error personalizados en validaciones.
 
 Accesibilidad (uso de alt en imágenes, etiquetas claras).
+------
 
-📅 Organización (Sprints)
+
+
+**Organización (Sprints)**
 
 Sprint 1: Estructura HTML (home, productos, carrito, contacto, login, registro, intranet).
 
@@ -74,8 +83,11 @@ Sprint 3: Lógica en JavaScript (carrito, validaciones, juego).
 Sprint 4: Pruebas en Live Server, depuración y mejoras visuales.
 
 Sprint 5: Documentación y preparación para despliegue.
+------
 
-📝 Ejemplos de commits
+
+
+**Ejemplos de commits**
 
 feat: crear home con hero y productos destacados
 
@@ -86,8 +98,10 @@ fix: corregir error en rutas de productos
 style: aplicar estilos globales y paleta de colores
 
 docs: añadir README y documentación del proyecto
+------
 
-🌐 Visión a futuro
+
+**Visión a futuro**
 
 Desplegar en Vercel para acceso público.
 
@@ -98,8 +112,10 @@ Implementar serverless functions para manejar carrito y pedidos.
 CRUD completo de productos y usuarios en panel de administración.
 
 Integración con pasarelas de pago (PayPal, Webpay).
+------
 
-✅ Conclusión
+
+**Conclusión**
 
 El desarrollo de LovelyY5 implicó varios desafíos, principalmente en la integración de múltiples vistas, validaciones estrictas y un carrito de compras persistente.
 El resultado es una tienda online funcional, modular y lista para evolucionar hacia un sistema más robusto con hosting y recursos serverless.
