@@ -1,5 +1,6 @@
 [
   {
+    "codigo": "y5iph12",
     "nombre": "iPhone 12",
     "descripcion": "Reacondicionado - 128GB - Como nuevo",
     "precio": 399990,
@@ -9,6 +10,7 @@
     "categoria": "iPhones"
   },
   {
+    "codigo": "y5ipda1474",
     "nombre": "iPad Air",
     "descripcion": "Reacondicionado - 64GB - Como nuevo",
     "precio": 449990,
@@ -18,6 +20,7 @@
     "categoria": "iPads"
   },
   {
+    "codigo": "y5glxs21",
     "nombre": "Samsung Galaxy S21",
     "descripcion": "Nuevo - 128GB",
     "precio": 369990,
@@ -27,6 +30,7 @@
     "categoria": "Celulares"
   },
   {
+    "codigo": "y5glxta7",
     "nombre": "Samsung Galaxy Tab A7",
     "descripcion": "Nuevo - 32GB",
     "precio": 189990,
@@ -36,6 +40,7 @@
     "categoria": "Tablets"
   },
   {
+    "codigo": "y5nka104",
     "nombre": "Nokia 105",
     "descripcion": "Teléfono básico - 1.8”",
     "precio": 14990,
@@ -45,6 +50,7 @@
     "categoria": "TelefonosBasicos"
   },
   {
+    "codigo": "y5imc220",
     "nombre": "iMac 2020",
     "descripcion": "Reacondicionado - 256GB SSD",
     "precio": 999990,
@@ -54,6 +60,7 @@
     "categoria": "Computadores"
   },
   {
+    "codigo": "y5dllins15",
     "nombre": "Dell Inspiron 15",
     "descripcion": "Notebook - 512GB SSD",
     "precio": 649990,
@@ -63,6 +70,7 @@
     "categoria": "Notebooks"
   },
   {
+    "codigo": "y5ps5",
     "nombre": "PlayStation 5",
     "descripcion": "Consola nueva - 825GB",
     "precio": 749990,
@@ -72,6 +80,7 @@
     "categoria": "Consolas"
   },
   {
+    "codigo": "y5kybdrgb",
     "nombre": "Teclado mecánico RGB",
     "descripcion": "Periférico para PC y consolas",
     "precio": 49990,
@@ -81,6 +90,7 @@
     "categoria": "Perifericos"
   },
   {
+    "codigo": "y5chgrwlss",
     "nombre": "Cargador inalámbrico",
     "descripcion": "Accesorio universal",
     "precio": 19990,

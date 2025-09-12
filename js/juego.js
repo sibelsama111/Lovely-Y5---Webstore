@@ -1,28 +1,16 @@
-const btnAdivinar = document.getElementById("btn-adivinar");
-const numeroInput = document.getElementById("numeroUsuario");
-const resultado = document.getElementById("resultado");
-
-btnAdivinar.addEventListener("click", () => {
-  const numeroUsuario = parseInt(numeroInput.value);
-  
-  if (isNaN(numeroUsuario) || numeroUsuario < 1 || numeroUsuario > 10) {
-    resultado.textContent = "Ingresa un número válido entre 1 y 10";
-    resultado.className = "text-danger";
+// js/juego.js
+document.getElementById('btn-adivinar')?.addEventListener('click', () => {
+  const input = document.getElementById('numeroUsuario');
+  const resultado = document.getElementById('resultado');
+  let num = parseInt(input.value,10);
+  if (!num || num < 1 || num > 10) {
+    resultado.innerHTML = '<span class="text-danger">Ingresa un número entre 1 y 10.</span>';
     return;
   }
-
-  // Número secreto se genera al azar cada intento
-  const numeroSecreto = Math.floor(Math.random() * 10) + 1;
-
-  // Nunca gana
-  if (numeroUsuario === numeroSecreto) {
-    // Solo para que el usuario sienta que adivinó
-    resultado.textContent = `Casi! El número era ${numeroSecreto} pero cambiamos la suerte 😎`;
-    resultado.className = "text-warning";
+  const secreto = Math.floor(Math.random()*10)+1;
+  if (num === secreto) {
+    resultado.innerHTML = `<span class="text-success">¡Increíble! Adivinaste (${secreto}).</span>`;
   } else {
-    resultado.textContent = `Lo sentimos 😢. Tu número: ${numeroUsuario}, número secreto: ${numeroSecreto}`;
-    resultado.className = "text-primary";
+    resultado.innerHTML = `<span class="text-muted">Fallaste. El número era ${secreto}. Mejor suerte la próxima.</span>`;
   }
-
-  numeroInput.value = "";
 });

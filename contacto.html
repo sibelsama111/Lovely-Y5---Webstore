@@ -1,110 +1,86 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Contacto LovelyY5</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+  <!-- Navbar -->
+  <div id="navbar-container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+      <div class="container">
+        <a class="navbar-brand fw-bold text-primary" href="index.html">LovelyY5</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+            <li class="nav-item"><a class="nav-link" href="productos.html">Productos</a></li>
+            <li class="nav-item"><a class="nav-link" href="juego.html">Juego de la Suerte</a></li>
+            <li class="nav-item"><a class="nav-link" href="servicio-tecnico.html">Servicio Técnico</a></li>
+            <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
+            <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
+            <li class="nav-item"><a class="nav-link" href="intranet.html">Intranet</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
 
-<!-- Navbar -->
-<div id="navbar-container">
-  <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+  <!-- Sección contacto -->
+  <section id="contacto" class="py-5 bg-light">
     <div class="container">
-      <a class="navbar-brand fw-bold text-primary" href="index.html">LovelyY5</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
-          <li class="nav-item"><a class="nav-link" href="productos.html">Productos</a></li>
-          <li class="nav-item"><a class="nav-link" href="juego.html">Juego de la Suerte</a></li>
-          <li class="nav-item"><a class="nav-link" href="servicio-tecnico.html">Servicio Tecnico</a></li>
-          <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
-          <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
-          <li class="nav-item"><a class="nav-link" href="intranet.html">Intranet</a></li>
-        </ul>
+      <h2 class="text-center mb-4">Contáctanos</h2>
+      <p class="text-center text-muted mb-5">Si tienes dudas o consultas, déjanos tu mensaje y te responderemos lo antes posible.</p>
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <form id="contactoForm">
+            <div class="mb-3">
+              <label for="nombre" class="form-label">Nombre</label>
+              <input type="text" class="form-control rounded-pill" id="nombre" placeholder="Tu nombre" required>
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Correo electrónico</label>
+              <input type="email" class="form-control rounded-pill" id="email" placeholder="tu@email.com" required>
+            </div>
+            <div class="mb-3">
+              <label for="mensaje" class="form-label">Mensaje</label>
+              <textarea class="form-control rounded" id="mensaje" rows="5" placeholder="Escribe tu mensaje aquí" required></textarea>
+            </div>
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary rounded-pill px-4">Enviar</button>
+            </div>
+            <div id="resultado" class="mt-3" aria-live="polite"></div>
+          </form>
+        </div>
       </div>
     </div>
-  </nav>
-</div>
+  </section>
 
-<!-- Sección contacto -->
-<section id="contacto" class="py-5 bg-light">
-  <div class="container">
-    <h2 class="text-center mb-4">Contáctanos</h2>
-    <p class="text-center text-muted mb-5">Si tienes dudas o consultas, déjanos tu mensaje y te responderemos lo antes posible.</p>
-    <div class="row justify-content-center">
-      <div class="col-md-6">
-        <form id="contactoForm">
-          <div class="mb-3">
-            <label for="nombre" class="form-label">Nombre</label>
-            <input type="text" class="form-control rounded-pill" id="nombre" placeholder="Tu nombre" required>
-          </div>
-          <div class="mb-3">
-            <label for="email" class="form-label">Correo electrónico</label>
-            <input type="email" class="form-control rounded-pill" id="email" placeholder="tu@email.com" required>
-          </div>
-          <div class="mb-3">
-            <label for="mensaje" class="form-label">Mensaje</label>
-            <textarea class="form-control rounded" id="mensaje" rows="5" placeholder="Escribe tu mensaje aquí" required></textarea>
-          </div>
-          <div class="text-center">
-            <button type="submit" class="btn btn-primary rounded-pill px-4">Enviar</button>
-          </div>
-          <div id="resultado" class="mt-3"></div>
-        </form>
-      </div>
+  <!-- Footer -->
+  <footer class="text-center py-4 text-white" style="background-color: #FFACCA;">
+    <div class="mb-2">
+      <a href="https://www.instagram.com/lovely.y5.tech/" target="_blank" rel="noopener" class="mx-2">
+        <img src="img/instagram.svg" alt="Instagram" style="width:28px;">
+      </a>
+      <a href="https://facebook.com/profile.php?id=61576634015335" target="_blank" rel="noopener" class="mx-2">
+        <img src="img/facebook.svg" alt="Facebook" style="width:28px;">
+      </a>
+      <a href="https://www.paypal.com/paypalme/sibelsama" target="_blank" rel="noopener" class="mx-2">
+        <img src="img/paypal.svg" alt="PayPal" style="width:28px;">
+      </a>
     </div>
-  </div>
-</section>
+    <p class="mb-0">&copy; 2025 LovelyY5 - Todos los derechos reservados</p>
+  </footer>
 
-<!-- Botón flotante carrito -->
-<button id="btn-carrito-flotante" type="button">
-  🛒
-  <span class="carrito-cantidad"></span>
-</button>
-<script>
-  document.getElementById('btn-carrito-flotante').addEventListener('click', function() {
-    window.location.href = 'carrito.html';
-  });
-  function actualizarCarritoFlotante() {
-    const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-    const cantidad = carrito.reduce((acc, item) => acc + (item.cantidad || 1), 0);
-    const span = document.querySelector('#btn-carrito-flotante .carrito-cantidad');
-    if (span) span.textContent = cantidad > 0 ? cantidad : '';
-  }
-  actualizarCarritoFlotante();
-  window.addEventListener('storage', actualizarCarritoFlotante);
-  setInterval(actualizarCarritoFlotante, 1000);
-</script>
+  <button id="btn-carrito-flotante" type="button">🛒 <span class="carrito-cantidad"></span></button>
 
-<!-- Footer -->
-<footer class="text-center py-4 text-white" style="background-color: #FFACCA;">
-  <div class="mb-2">
-    <a href="https://www.instagram.com/lovely.y5.tech/" target="_blank" class="mx-2">
-      <img src="img/instagram.svg" alt="Instagram" style="width:28px;">
-    </a>
-    <a href="https://facebook.com/profile.php?id=61576634015335" target="_blank" class="mx-2">
-      <img src="img/facebook.svg" alt="Facebook" style="width:28px;">
-    </a>
-    <a href="https://www.paypal.com/paypalme/sibelsama" target="_blank" class="mx-2">
-      <img src="img/paypal.svg" alt="PayPal" style="width:28px;">
-    </a>
-  </div>
-  <p class="mb-0">&copy; 2025 LovelyY5 - Todos los derechos reservados</p>
-</footer>
-<!-- Firebase App (core) -->
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<!-- Authentication -->
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
-<!-- Firestore -->
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-
-<script src="js/contacto.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/carrito.js"></script>
+  <script src="js/contacto.js"></script>
 </body>
 </html>

@@ -1,150 +1,79 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Carrito - LovelyY5</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css">
-<style>
-.card-img-top { max-width: 100px; object-fit: cover; }
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Carrito - LovelyY5</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>.card-img-top { max-width: 100px; object-fit: cover; }</style>
 </head>
 <body>
-<!-- Navbar -->
-<div id="navbar-container">
-  <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
-    <div class="container">
-      <a class="navbar-brand fw-bold text-primary" href="index.html">LovelyY5</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
-          <li class="nav-item"><a class="nav-link" href="productos.html">Productos</a></li>
-          <li class="nav-item"><a class="nav-link" href="juego.html">Juego de la Suerte</a></li>
-          <li class="nav-item"><a class="nav-link" href="servicio-tecnico.html">Servicio Tecnico</a></li>
-          <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
-          <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
-          <li class="nav-item"><a class="nav-link" href="intranet.html">Intranet</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-</div>
-
-<div class="container py-5">
-  <h1 class="mb-4">Mi Carrito</h1>
-  <div id="carrito-list" class="row g-3"></div>
-  <div class="mt-4 text-end">
-    <h3>Total: $<span id="total">0</span></h3>
-    <button id="vaciar-carrito" class="btn btn-danger">Vaciar Carrito</button>
-    <button id="comprar-carrito" class="btn btn-success ms-2">Comprar</button>
-  </div>
-</div>
-
-<!-- El botón flotante no es necesario aquí, ya que ya estás en el carrito -->
-
-<script>
-// Inicializamos carrito desde localStorage
-let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-
-// Función para renderizar el carrito
-function renderCarrito() {
-  const contenedor = document.getElementById('carrito-list');
-  contenedor.innerHTML = '';
-  let total = 0;
-
-  carrito.forEach((item, index) => {
-    const precioUnitario = parseFloat(item.precio) || 0;
-    const cantidad = item.cantidad || 1;
-    total += precioUnitario * cantidad;
-    const div = document.createElement('div');
-    div.className = 'col-12';
-    div.innerHTML = `
-      <div class="card d-flex flex-row align-items-center p-2">
-        <img src="${item.imagen}" class="card-img-top me-3" alt="${item.nombre}" style="max-width:100px;">
-        <div class="flex-grow-1">
-          <h5>${item.nombre}</h5>
-          <p>${item.descripcion}</p>
-          <p><strong>$${precioUnitario}</strong></p>
-          <div>
-            <label>Cantidad:</label>
-            <input type="number" min="1" value="${cantidad}" class="form-control d-inline-block" style="width:70px;" onchange="actualizarCantidad(${index}, this.value)">
-          </div>
+  <!-- Navbar -->
+  <div id="navbar-container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+      <div class="container">
+        <a class="navbar-brand fw-bold text-primary" href="index.html">LovelyY5</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+            <li class="nav-item"><a class="nav-link" href="productos.html">Productos</a></li>
+            <li class="nav-item"><a class="nav-link" href="juego.html">Juego de la Suerte</a></li>
+            <li class="nav-item"><a class="nav-link" href="servicio-tecnico.html">Servicio Técnico</a></li>
+            <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
+            <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
+            <li class="nav-item"><a class="nav-link" href="intranet.html">Intranet</a></li>
+          </ul>
         </div>
-        <button class="btn btn-sm btn-danger ms-2" onclick="eliminar(${index})">Eliminar</button>
       </div>
-    `;
-    contenedor.appendChild(div);
-  });
+    </nav>
+  </div>
 
-  document.getElementById('total').textContent = total;
-}
+  <div class="container py-5">
+    <h1 class="mb-4">Mi Carrito</h1>
+    <div id="carrito-list" class="row g-3"></div>
+    <div class="mt-4 text-end">
+      <h3>Total: $<span id="total">0</span></h3>
+      <button id="vaciar-carrito" class="btn btn-danger">Vaciar Carrito</button>
+      <button id="comprar-carrito" class="btn btn-success ms-2">Comprar</button>
+    </div>
+  </div>
 
-// Eliminar producto
-function eliminar(index) {
-  carrito.splice(index, 1);
-  localStorage.setItem('carrito', JSON.stringify(carrito));
-  renderCarrito();
-}
+  <!-- Footer -->
+  <footer class="text-center py-4 text-white" style="background-color: #FFACCA;">
+    <div class="mb-2">
+      <a href="https://www.instagram.com/lovely.y5.tech/" target="_blank" rel="noopener" class="mx-2">
+        <img src="img/instagram.svg" alt="Instagram" style="width:28px;">
+      </a>
+      <a href="https://facebook.com/profile.php?id=61576634015335" target="_blank" rel="noopener" class="mx-2">
+        <img src="img/facebook.svg" alt="Facebook" style="width:28px;">
+      </a>
+      <a href="https://www.paypal.com/paypalme/sibelsama" target="_blank" rel="noopener" class="mx-2">
+        <img src="img/paypal.svg" alt="PayPal" style="width:28px;">
+      </a>
+    </div>
+    <p class="mb-0">&copy; 2025 LovelyY5 - Todos los derechos reservados</p>
+  </footer>
 
-// Actualizar cantidad
-function actualizarCantidad(index, value) {
-  const cantidad = Math.max(1, parseInt(value) || 1);
-  carrito[index].cantidad = cantidad;
-  localStorage.setItem('carrito', JSON.stringify(carrito));
-  renderCarrito();
-}
-
-// Vaciar carrito
-document.getElementById('vaciar-carrito').addEventListener('click', () => {
-  carrito = [];
-  localStorage.setItem('carrito', JSON.stringify(carrito));
-  renderCarrito();
-});
-
-// Comprar
-document.getElementById('comprar-carrito').addEventListener('click', () => {
-  window.location.href = 'venta.html';
-});
-
-// Cargar carrito al inicio
-renderCarrito();
-</script>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
-  const cantidad = Math.max(1, parseInt(value) || 1);
-  carrito[index].cantidad = cantidad;
-  localStorage.setItem('carrito', JSON.stringify(carrito));
-  renderCarrito();
-}
-
-// Vaciar carrito
-document.getElementById('vaciar-carrito').addEventListener('click', () => {
-  carrito = [];
-  localStorage.setItem('carrito', JSON.stringify(carrito));
-  renderCarrito();
-});
-
-// Comprar
-document.getElementById('comprar-carrito').addEventListener('click', () => {
-  window.location.href = 'venta.html';
-});
-
-// Cargar carrito al inicio
-renderCarrito();
-</script>
-<!-- Firebase App (core) -->
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<!-- Authentication -->
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
-<!-- Firestore -->
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/carrito.js"></script>
+  <script>
+    // renderCarrito usa las funciones del js/carrito.js
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCarritoPage();
+      document.getElementById('vaciar-carrito').addEventListener('click', () => {
+        vaciarCarrito();
+        renderCarritoPage();
+      });
+      document.getElementById('comprar-carrito').addEventListener('click', () => {
+        alert('Simulación de compra: no hay backend definido. Se vacía el carrito.');
+        vaciarCarrito();
+        renderCarritoPage();
+      });
+    });
+  </script>
 </body>
 </html>
