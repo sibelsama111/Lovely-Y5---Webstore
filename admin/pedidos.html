@@ -1,36 +1,147 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pedidos - LovelyY5</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="../css/styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pedidos - LovelyY5 Intranet</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-<div class="container py-5">
-  <h1 class="mb-4">Pedidos</h1>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>ID Pedido</th>
-        <th>Cliente</th>
-        <th>Productos</th>
-        <th>Total</th>
-      </tr>
-    </thead>
-    <tbody id="pedidosTable"></tbody>
-  </table>
-</div>
-<script>
-const pedidosTable = document.getElementById('pedidosTable');
-const pedidos = JSON.parse(localStorage.getItem('pedidos')) || [];
-pedidos.forEach(p=>{
-  const row = document.createElement('tr');
-  row.innerHTML = `<td>${p.id}</td><td>${p.cliente}</td><td>${p.productos.map(x=>x.nombre).join(', ')}</td><td>${p.total}</td>`;
-  pedidosTable.appendChild(row);
-});
-</script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Navbar -->
+  <div id="navbar-container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+      <div class="container">
+        <a class="navbar-brand fw-bold text-primary" href="dashboard.html">Intranet</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+            <li class="nav-item"><a class="nav-link" href="gproductos.html">Gestión de Productos</a></li>
+            <li class="nav-item"><a class="nav-link active" href="pedidos.html">Pedidos</a></li>
+            <li class="nav-item"><a class="nav-link" href="mensajes.html">Mensajes</a></li>
+            <li class="nav-item"><a class="nav-link" href="usuarios.html">Usuarios</a></li>
+            <li class="nav-item"><a class="nav-link" href="index.html">Cerrar Sesión</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <div class="container py-5">
+    <h1 class="mb-4">Gestión de Pedidos</h1>
+
+    <!-- Controles de filtrado / búsqueda / orden -->
+    <div class="row mb-4">
+      <div class="col-md-3">
+        <select id="filtro-estado" class="form-select">
+          <option value="">Todos los estados</option>
+          <option value="iniciado">Iniciado</option>
+          <option value="confirmado">Confirmado</option>
+          <option value="enviado">Enviado</option>
+          <option value="recibido">Recibido</option>
+          <option value="cancelado">Cancelado</option>
+          <option value="reembolsado">Reembolsado</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <select id="orden-fecha" class="form-select">
+          <option value="masReciente">Fecha: más reciente primero</option>
+          <option value="masAntiguo">Fecha: más antiguo primero</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <select id="orden-precio" class="form-select">
+          <option value="precioDesc">Precio: mayor a menor</option>
+          <option value="precioAsc">Precio: menor a mayor</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <input type="text" id="buscar-correo" class="form-control" placeholder="Buscar por correo">
+      </div>
+    </div>
+
+    <!-- Secciones por estado -->
+    <div class="accordion" id="pedidosAccordion">
+
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="heading1">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseIniciado" aria-expanded="true" aria-controls="collapseIniciado">
+            Pedidos Iniciados
+          </button>
+        </h2>
+        <div id="collapseIniciado" class="accordion-collapse collapse show" aria-labelledby="heading1" data-bs-parent="#pedidosAccordion">
+          <div class="accordion-body" id="iniciados-list"></div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="heading2">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseConfirmado" aria-expanded="false" aria-controls="collapseConfirmado">
+            Pedidos Confirmados
+          </button>
+        </h2>
+        <div id="collapseConfirmado" class="accordion-collapse collapse" aria-labelledby="heading2" data-bs-parent="#pedidosAccordion">
+          <div class="accordion-body" id="confirmados-list"></div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="heading3">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEnviado" aria-expanded="false" aria-controls="collapseEnviado">
+            Pedidos Enviados
+          </button>
+        </h2>
+        <div id="collapseEnviado" class="accordion-collapse collapse" aria-labelledby="heading3" data-bs-parent="#pedidosAccordion">
+          <div class="accordion-body" id="enviados-list"></div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="heading4">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRecibido" aria-expanded="false" aria-controls="collapseRecibido">
+            Pedidos Recibidos
+          </button>
+        </h2>
+        <div id="collapseRecibido" class="accordion-collapse collapse" aria-labelledby="heading4" data-bs-parent="#pedidosAccordion">
+          <div class="accordion-body" id="recibidos-list"></div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="heading5">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCancelado" aria-expanded="false" aria-controls="collapseCancelado">
+            Pedidos Cancelados
+          </button>
+        </h2>
+        <div id="collapseCancelado" class="accordion-collapse collapse" aria-labelledby="heading5" data-bs-parent="#pedidosAccordion">
+          <div class="accordion-body" id="cancelados-list"></div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="heading6">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseReembolsado" aria-expanded="false" aria-controls="collapseReembolsado">
+            Pedidos Reembolsados
+          </button>
+        </h2>
+        <div id="collapseReembolsado" class="accordion-collapse collapse" aria-labelledby="heading6" data-bs-parent="#pedidosAccordion">
+          <div class="accordion-body" id="reembolsados-list"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="text-center py-4 text-white" style="background-color: #FFACCA;">
+    <p class="mb-0">&copy; 2025 LovelyY5 - Todos los derechos reservados</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/pedidos_filtrado.js"></script>
 </body>
 </html>
