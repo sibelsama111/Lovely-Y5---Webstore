@@ -1,20 +1,179 @@
-/* styles.css (básico para mantener estética) */
-:root{
-  --primary:#FFACCA;
-  --accent:#ff6f91;
-  --muted:#555;
+/* Colores base inspirados en #FFACCA */
+:root {
+  --primary: #FFACCA;
+  --primary-dark: #e38dac;
+  --light-bg: #fff4f8;
 }
 
-body{font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background:#fff; color:#222;}
-a{text-decoration:none;}
-.navbar-brand{font-size:1.2rem;}
-.price{font-weight:700; font-size:1.1rem; color:#222;}
-.hero .lead{opacity:0.95;}
-.card{border-radius:12px;}
-footer a img{filter:brightness(0) invert(1);}
+/* Hero */
+.hero {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  min-height: 70vh;
+  padding: 80px 0;
+}
 
-/* Small responsive adjustments */
-@media (max-width:576px){
-  header.hero{padding:40px 0;}
-  .card-img-top{max-height:180px;}
+/* Navbar */
+.navbar-brand {
+  color: var(--primary-dark) !important;
+}
+
+.nav-link {
+  color: #555 !important;
+}
+
+.nav-link:hover {
+  color: var(--primary-dark) !important;
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-dark);
+}
+
+/* Productos */
+#productos input {
+  border-color: #FFACCA;
+}
+
+#productos input:focus {
+  box-shadow: 0 0 0 0.2rem rgba(255,172,202,0.25);
+}
+
+.product-card, .card {
+  transition: transform 0.3s cubic-bezier(.4,2,.3,1);
+  border: none;
+}
+
+.product-card:hover, .card:hover {
+  transform: translateY(-12px);
+}
+
+.price {
+  color: var(--primary-dark);
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+#juego {
+  background-color: #fff0f5;
+}
+
+#juego h2 {
+  color: #FFACCA;
+  font-weight: bold;
+}
+
+#juego .btn-primary {
+  background-color: #FFACCA;
+  border: none;
+}
+
+#juego .btn-primary:hover {
+  background-color: #e695b2;
+}
+
+#juego input:focus {
+  border-color: #FFACCA;
+  box-shadow: 0 0 0 0.2rem rgba(255,172,202,0.25);
+}
+
+#contacto {
+  background-color: #fff0f5;
+}
+
+#contacto h2 {
+  color: #FFACCA;
+  font-weight: bold;
+}
+
+#contacto .btn-primary {
+  background-color: #FFACCA;
+  border: none;
+}
+
+#contacto .btn-primary:hover {
+  background-color: #e695b2;
+}
+
+.form-control:focus {
+  border-color: #FFACCA;
+  box-shadow: 0 0 0 0.2rem rgba(255, 172, 202, 0.25);
+}
+
+/* Footer */
+footer {
+  background-color: #FFACCA !important;
+}
+
+/* Botón flotante carrito */
+#btn-carrito-flotante {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  z-index: 9999;
+  background: var(--primary-dark);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s;
+  padding: 0;
+}
+
+#btn-carrito-flotante:hover {
+  background: var(--primary);
+}
+
+#btn-carrito-flotante .icono-carrito {
+  width: 50%;
+  height: 50%;
+  object-fit: contain;
+}
+
+#btn-carrito-flotante .carrito-cantidad {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  background: #fff;
+  color: var(--primary-dark);
+  border-radius: 50%;
+  font-size: 0.8rem;
+  padding: 2px 6px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
+
+/* Botón "Añadir al carrito" */
+.btn-success,
+.btn-success:focus {
+  background-color: #FFACCA !important;
+  border: none !important;
+  color: #fff !important;
+}
+.btn-success:hover {
+  background-color: #e38dac !important;
+  color: #fff !important;
+}
+
+#btn-carrito-flotante.rebote {
+  animation: rebote 0.3s ease;
+}
+
+@keyframes rebote {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.3); }
+  100% { transform: scale(1); }
 }

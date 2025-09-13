@@ -1,108 +1,60 @@
-// js/carrito.js
-// Centraliza lógica del carrito y actualización visual
+// carrito.js
+const carritoBtn = document.getElementById('btn-carrito-flotante');
+const cantidadDiv = carritoBtn?.querySelector('.carrito-cantidad');
 
-function obtenerCarrito() {
-  return JSON.parse(localStorage.getItem('carrito')) || [];
+function actualizarCarrito() {
+  const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+  if(cantidadDiv) cantidadDiv.textContent = carrito.length;
 }
 
-function guardarCarrito(carrito) {
-  localStorage.setItem('carrito', JSON.stringify(carrito));
-  actualizarCarritoFlotante();
-}
-
-// agregarAlCarrito acepta item {id,nombre,precio,imagen,stock,cantidad}
-function agregarAlCarrito(item) {
-  const carrito = obtenerCarrito();
-  const idx = carrito.findIndex(it => String(it.id) === String(item.id));
-  const cantidadAgregar = item.cantidad ? parseInt(item.cantidad,10) : 1;
-
-  if (idx > -1) {
-    // sumar cantidades
-    carrito[idx].cantidad = (carrito[idx].cantidad || 1) + cantidadAgregar;
-    // validar stock si existe
-    if (item.stock && carrito[idx].cantidad > item.stock) {
-      carrito[idx].cantidad = item.stock;
-      alert('Se alcanzó el stock máximo disponible.');
-    }
+function agregarAlCarrito(producto) {
+  let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+  const existe = carrito.find(p => p.codigo === producto.codigo);
+  if (existe) {
+    existe.cantidad += 1;
   } else {
-    const nuevo = Object.assign({cantidad: cantidadAgregar}, item);
-    // validar stock
-    if (nuevo.stock && nuevo.cantidad > nuevo.stock) {
-      nuevo.cantidad = nuevo.stock;
-      alert('Se ajustó la cantidad al stock disponible.');
-    }
-    carrito.push(nuevo);
+    carrito.push({...producto, cantidad:1});
   }
-  guardarCarrito(carrito);
-  alert(`${item.nombre} agregado al carrito`);
+  localStorage.setItem('carrito', JSON.stringify(carrito));
+  actualizarCarrito();
 }
 
-function actualizarCarritoFlotante() {
-  const carrito = obtenerCarrito();
-  const cantidad = carrito.reduce((acc, item) => acc + (parseInt(item.cantidad,10) || 1), 0);
-  const span = document.querySelector('#btn-carrito-flotante .carrito-cantidad') || document.querySelector('.carrito-cantidad');
-  if (span) span.textContent = cantidad > 0 ? cantidad : '';
-}
-
+// Renderizar carrito en carrito.html
 function renderCarritoPage() {
-  const carrito = obtenerCarrito();
-  const contenedor = document.getElementById('carrito-list');
-  if (!contenedor) return;
-  contenedor.innerHTML = '';
+  const carritoList = document.getElementById('carrito-list');
+  carritoList.innerHTML = '';
+
+  if(!carritoList) return;
+  
+  carritoList.innerHTML = '';
+  const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
   let total = 0;
 
-  carrito.forEach((item, index) => {
-    const precioUnitario = parseFloat(item.precio) || 0;
-    const cantidad = parseInt(item.cantidad,10) || 1;
-    total += precioUnitario * cantidad;
+  carrito.forEach(producto => {
+    const subtotal = producto.precio * producto.cantidad;
+    total += subtotal;
+
     const div = document.createElement('div');
-    div.className = 'col-12';
+    div.className = 'col-12 d-flex align-items-center border p-2 rounded mb-2';
     div.innerHTML = `
-      <div class="card d-flex flex-row align-items-center p-2">
-        <img src="${item.imagen || 'img/default.png'}" class="card-img-top me-3" alt="${item.nombre}" style="max-width:100px;">
-        <div class="flex-grow-1">
-          <h5>${item.nombre}</h5>
-          <p>${item.descripcion || ''}</p>
-          <p><strong>$${precioUnitario}</strong></p>
-          <div>
-            <label>Cantidad:</label>
-            <input type="number" min="1" value="${cantidad}" class="form-control d-inline-block" style="width:70px;" onchange="actualizarCantidad(${index}, this.value)">
-          </div>
-        </div>
-        <button class="btn btn-sm btn-danger ms-2" onclick="eliminar(${index})">Eliminar</button>
-      </div>
+      <img src="img/${producto.imagenes[0]}" alt="${producto.nombre}" width="30" height="30" class="me-2">
+      <span class="me-auto">${producto.nombre}</span>
+      <span class="me-2">x${producto.cantidad}</span>
+      <span>$${subtotal}</span>
     `;
-    contenedor.appendChild(div);
+    carritoList.appendChild(div);
   });
 
   document.getElementById('total').textContent = total;
-  actualizarCarritoFlotante();
 }
 
-function eliminar(index) {
-  const carrito = obtenerCarrito();
-  carrito.splice(index, 1);
-  guardarCarrito(carrito);
-  renderCarritoPage();
-}
-
-function actualizarCantidad(index, value) {
-  const carrito = obtenerCarrito();
-  const cantidad = Math.max(1, parseInt(value,10) || 1);
-  carrito[index].cantidad = cantidad;
-  // validar stock si existe
-  if (carrito[index].stock && carrito[index].cantidad > carrito[index].stock) {
-    carrito[index].cantidad = carrito[index].stock;
-    alert('Se alcanzó el stock máximo disponible.');
+function vaciarCarrito(confirmar = true) {
+  if(confirmar){
+    if(!confirm("¿Estás seguro de vaciar tu carrito?\nEsta acción es irreversible y tendrás que añadir los productos otra vez :(")) return;
   }
-  guardarCarrito(carrito);
+  localStorage.removeItem('carrito');
+  actualizarCarrito();
   renderCarritoPage();
 }
 
-function vaciarCarrito() {
-  localStorage.removeItem('carrito');
-  actualizarCarritoFlotante();
-}
-document.addEventListener('DOMContentLoaded', actualizarCarritoFlotante);
-window.addEventListener('storage', actualizarCarritoFlotante);
-setInterval(actualizarCarritoFlotante, 1200);
+actualizarCarrito();

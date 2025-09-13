@@ -6,7 +6,26 @@
   <title>Carrito - LovelyY5</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
-  <style>.card-img-top { max-width: 100px; object-fit: cover; }</style>
+  <style>
+    .carrito-item {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+    .carrito-item img {
+      width: 30px;
+      height: 30px;
+      object-fit: cover;
+      margin-right: 10px;
+    }
+    .carrito-info {
+      flex-grow: 1;
+    }
+    .carrito-cantidad {
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
   <!-- Navbar -->
@@ -31,17 +50,17 @@
       </div>
     </nav>
   </div>
-
+<!-- Contenedor del carrito -->
   <div class="container py-5">
     <h1 class="mb-4">Mi Carrito</h1>
-    <div id="carrito-list" class="row g-3"></div>
+    <div id="carrito-list"></div>
+
     <div class="mt-4 text-end">
       <h3>Total: $<span id="total">0</span></h3>
       <button id="vaciar-carrito" class="btn btn-danger">Vaciar Carrito</button>
-      <button id="comprar-carrito" class="btn btn-success ms-2">Comprar</button>
+      <a href="venta.html" id="comprar-carrito" class="btn btn-success ms-2">Comprar</a>
     </div>
   </div>
-
   <!-- Footer -->
   <footer class="text-center py-4 text-white" style="background-color: #FFACCA;">
     <div class="mb-2">
@@ -59,21 +78,41 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="js/carrito.js"></script>
-  <script>
-    // renderCarrito usa las funciones del js/carrito.js
+<script src="js/carrito.js"></script>
+<script>
+    function renderCarritoPage() {
+      const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+      const carritoList = document.getElementById('carrito-list');
+      carritoList.innerHTML = '';
+
+      let total = 0;
+      carrito.forEach(item => {
+        total += item.precio * item.cantidad;
+        const div = document.createElement('div');
+        div.className = 'carrito-item';
+        div.innerHTML = `
+          <img src="img/${item.imagenes[0]}" alt="${item.nombre}">
+          <div class="carrito-info">
+            ${item.nombre} <span class="carrito-cantidad">x${item.cantidad}</span>
+          </div>
+          <div>$${item.precio * item.cantidad}</div>
+        `;
+        carritoList.appendChild(div);
+      });
+
+      document.getElementById('total').textContent = total;
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
       renderCarritoPage();
+
       document.getElementById('vaciar-carrito').addEventListener('click', () => {
-        vaciarCarrito();
-        renderCarritoPage();
-      });
-      document.getElementById('comprar-carrito').addEventListener('click', () => {
-        alert('Simulación de compra: no hay backend definido. Se vacía el carrito.');
-        vaciarCarrito();
-        renderCarritoPage();
+        if(confirm('¿Estás seguro de vaciar tu carrito?\nEsta acción es irreversible y tendrás que añadir los productos otra vez')) {
+          localStorage.removeItem('carrito');
+          renderCarritoPage();
+        }
       });
     });
   </script>
-</body>
+  </body>
 </html>

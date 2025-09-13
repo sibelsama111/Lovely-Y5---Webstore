@@ -1,51 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>LovelyY5</title>
-  <meta name="description" content="LovelyY5 - Compra con confianza" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lovely Y5</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
-  <link rel="icon" href="img/favicon.png">
-  <style>
-    .card-img-top { max-height: 250px; object-fit: cover; }
-    .card-title { font-weight: bold; }
-    .specs { font-size: 0.9rem; color: #555; }
-    #btn-carrito-flotante {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      font-size: 1.3rem;
-      padding: 0.6rem 0.9rem;
-      border-radius: 50%;
-      background-color: #FFACCA;
-      color: white;
-      border: none;
-      cursor: pointer;
-      z-index: 1000;
-    }
-    .carrito-cantidad {
-      position: absolute;
-      top: -6px;
-      right: -6px;
-      background: rgb(172, 74, 74);
-      color: white;
-      font-size: 0.8rem;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    header.hero {
-      background-image: linear-gradient(0deg, rgba(255,255,255,0.15), rgba(255,255,255,0.15)), url('img/hero.jpg');
-      background-size: cover;
-      background-position: center;
-      padding: 80px 0;
-    }
-  </style>
 </head>
 <body>
   <!-- Navbar -->
@@ -61,7 +21,7 @@
             <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
             <li class="nav-item"><a class="nav-link" href="productos.html">Productos</a></li>
             <li class="nav-item"><a class="nav-link" href="juego.html">Juego de la Suerte</a></li>
-            <li class="nav-item"><a class="nav-link" href="servicio-tecnico.html">Servicio Técnico</a></li>
+            <li class="nav-item"><a class="nav-link" href="servicio-tecnico.html">Servicio Tecnico</a></li>
             <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
             <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
             <li class="nav-item"><a class="nav-link" href="intranet.html">Intranet</a></li>
@@ -72,117 +32,43 @@
   </div>
 
   <!-- Hero -->
-  <header class="hero d-flex align-items-center text-center text-white">
-    <div class="container">
-      <h1 class="display-4 fw-bold">Compra con confianza</h1>
-      <p class="lead">Calidad verificada, precios al alcance de tu bolsillo y garantía de una buena inversión</p>
-      <a href="productos.html" class="btn btn-light btn-lg mt-3">Ver todos los productos</a>
-    </div>
-  </header>
-
-  <!-- Productos -->
-  <section id="productos" class="py-5">
-    <div class="container">
-      <h2 class="text-center mb-4">Nuestros modelos</h2>
-      <div class="row g-4" id="productos-list"></div>
-    </div>
+  <section class="hero d-flex justify-content-center align-items-center text-white">
+    <h1>Bienvenido a Lovely Y5</h1>
+    <p class="lead mt-3 text-center">
+      Tecnología al alcance de tu bolsillo, valoramos tu confianza.
+    </p>
   </section>
-
-  <!-- Servicios resumen -->
-  <section id="servicios" class="py-5 bg-light">
-    <div class="container text-center">
-      <h2 class="mb-4">Servicio Técnico</h2>
-      <p class="lead">
-        Reparación y mantención de celulares, consolas, periféricos, computadoras y múltiples aparatos electrónicos y electrodomésticos.  
-        <br><strong>No reparamos televisores.</strong>
-      </p>
-      <a href="servicio-tecnico.html" class="btn btn-primary btn-lg mt-3">Ver todos los servicios</a>
-    </div>
-  </section>
-
+  <!-- Productos Destacados -->
+  <div class="container py-5">
+    <h1 class="mb-4">Productos Destacados</h1>
+    <div class="row" id="productosContainer"></div>
+  </div>
+  <!-- Sección Servicio Técnico -->
+<section id="servicio-tecnico" class="py-5 bg-light">
+  <div class="container text-center">
+    <h2 class="mb-4">Servicio Técnico Profesional</h2>
+    <p class="mb-4">
+      Nuestro equipo se encarga de reparar y optimizar tus dispositivos, ya sean celulares, consolas o computadores.
+      Garantizamos rapidez, seguridad y confiabilidad.
+      No arreglamos televisores.
+    </p>
+    <a href="servicio-tecnico.html" class="btn btn-primary btn-lg rounded-pill">Ir a Servicio Técnico</a>
+  </div>
+</section>
   <!-- Footer -->
   <footer class="text-center py-4 text-white" style="background-color: #FFACCA;">
     <div class="mb-2">
-      <a href="https://www.instagram.com/lovely.y5.tech/" target="_blank" rel="noopener" class="mx-2" title="Instagram">
-        <img src="img/instagram.svg" alt="Instagram" style="width:28px;vertical-align:middle;">
-      </a>
-      <a href="https://facebook.com/profile.php?id=61576634015335" target="_blank" rel="noopener" class="mx-2" title="Facebook">
-        <img src="img/facebook.svg" alt="Facebook" style="width:28px;vertical-align:middle;">
-      </a>
-      <a href="https://www.paypal.com/paypalme/sibelsama" target="_blank" rel="noopener" class="mx-2" title="PayPal">
-        <img src="img/paypal.svg" alt="PayPal" style="width:28px;vertical-align:middle;">
-      </a>
+      <a href="#" class="mx-2"><img src="img/instagram.svg" style="width:28px;"></a>
+      <a href="#" class="mx-2"><img src="img/facebook.svg" style="width:28px;"></a>
+      <a href="#" class="mx-2"><img src="img/paypal.svg" style="width:28px;"></a>
     </div>
     <p class="mb-0">&copy; 2025 LovelyY5 - Todos los derechos reservados</p>
   </footer>
-
-  <!-- Carrito flotante -->
-  <button id="btn-carrito-flotante" type="button" aria-label="Ir al carrito">
-    🛒
-    <span class="carrito-cantidad" aria-hidden="true"></span>
-  </button>
-
-  <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="js/carrito.js"></script>
-
-  <script>
-    // Cargar y mostrar 3 primeros productos (home)
-    fetch('data/ProductosDisponibles.json')
-      .then(res => res.json())
-      .then(productos => {
-        const contenedor = document.getElementById('productos-list');
-        contenedor.innerHTML = '';
-
-        if (!productos || !productos.length) {
-          contenedor.innerHTML = '<div class="col-12 text-center text-danger">No hay productos para mostrar.</div>';
-          return;
-        }
-
-        productos.slice(0, 3).forEach((p, index) => {
-          let imgSrc = 'img/default.png';
-          if (Array.isArray(p.imagenes) && p.imagenes.length > 0 && p.imagenes[0]) {
-            imgSrc = p.imagenes[0].startsWith('http') ? p.imagenes[0] : 'img/' + p.imagenes[0];
-          }
-
-          const card = document.createElement('div');
-          card.className = 'col-md-4 producto';
-          card.innerHTML = `
-            <div class="card shadow-sm product-card h-100">
-              <img src="${imgSrc}" class="card-img-top" alt="${p.nombre}" onerror="this.src='img/default.png'">
-              <div class="card-body text-center d-flex flex-column">
-                <h5 class="card-title">
-                  <a href="detalle-producto.html?id=${index}" class="text-decoration-none text-dark">${p.nombre}</a>
-                </h5>
-                <p class="card-text">${p.descripcion || ''}</p>
-                ${p.specs ? `<p class="specs">${p.specs}</p>` : ''}
-                <p class="price">$${p.precio}</p>
-                <button class="btn btn-success mt-auto">Agregar al carrito</button>
-              </div>
-            </div>
-          `;
-          contenedor.appendChild(card);
-
-          card.querySelector('button').addEventListener('click', () => {
-            agregarAlCarrito({
-              id: p.codigo || index,
-              nombre: p.nombre,
-              descripcion: p.descripcion,
-              precio: parseFloat(p.precio) || 0,
-              imagen: imgSrc,
-              stock: parseInt(p.stock) || 0
-            });
-          });
-        });
-      })
-      .catch(err => {
-        console.error('Error al cargar productos:', err);
-        document.getElementById('productos-list').innerHTML = '<div class="col-12 text-center text-danger">No se pudieron cargar los productos.</div>';
-      });
-
-    document.getElementById('btn-carrito-flotante').addEventListener('click', () => {
-      window.location.href = 'carrito.html';
-    });
-  </script>
+  <a href="carrito.html" id="btn-carrito-flotante" class="position-fixed bottom-0 end-0 m-3" style="z-index:999">
+  <img src="img/carrito.svg" width="50">
+  <div class="carrito-cantidad position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</div>
+</a>
+<script src="js/carrito.js"></script>
+<script src="js/productos.js"></script>
 </body>
 </html>
