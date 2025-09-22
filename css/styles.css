@@ -1,7 +1,7 @@
 /* Colores base inspirados en #FFACCA */
 :root {
   --primary: #FFACCA;
-  --primary-dark: #e38dac;
+  --primary-dark: #b38c9a;
   --light-bg: #fff4f8;
 }
 
@@ -14,7 +14,7 @@
 
 /* Navbar */
 .navbar-brand {
-  color: var(--primary-dark) !important;
+  color: var(--primary) !important;
 }
 
 .nav-link {
@@ -170,6 +170,25 @@ footer {
 
 #btn-carrito-flotante.rebote {
   animation: rebote 0.3s ease;
+}
+
+a:link{
+  color: #FFACCA; /* color deseado */
+  text-decoration: none; /* opcional, quita el subrayado */
+}
+a:visited {
+  color: #FFACCA; /* color deseado para enlaces visitados */
+}
+a:hover {
+  color: #FFACCA; /* color deseado al pasar el cursor */
+  text-decoration: underline; /* opcional, añade subrayado al pasar el cursor */
+}
+a:active {
+  color: #81414a; /* color deseado al hacer clic */
+}
+
+.textodark {
+  color: #634952;
 }
 
 @keyframes rebote {

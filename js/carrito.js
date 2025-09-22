@@ -34,9 +34,9 @@ function renderCarritoPage() {
     div.innerHTML = `
       <div class="d-flex align-items-center border rounded p-2">
         <img src="${p.imagen}" width="30" height="30" class="me-2">
-        <span class="fw-bold me-2">${p.nombre}</span>
-        <span class="badge bg-secondary">${p.cantidad}</span>
-        <span class="ms-auto fw-bold">$${p.precio * p.cantidad}</span>
+        <span class="fw-bold me-2 textodark">${p.nombre}</span>
+        <span class="badge bg-secondary textodark">${p.cantidad}</span>
+        <span class="ms-auto fw-bold textodark">$${p.precio * p.cantidad}</span>
       </div>`;
     carritoList.appendChild(div);
   });

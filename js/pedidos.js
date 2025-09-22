@@ -1,8 +1,26 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Obtener pedidos desde localStorage
   const pedidos = JSON.parse(localStorage.getItem('pedidos')) || [];
 
-  // Definir secciones
+  // ---------- DASHBOARD ----------
+  const dashboardDiv = document.getElementById('dashboard-pedidos');
+  if (dashboardDiv) {
+    dashboardDiv.innerHTML = '';
+    pedidos.slice(-5).reverse().forEach(p => {
+      const div = document.createElement('div');
+      div.className = 'col-12';
+      div.innerHTML = `
+        <div class="card p-2 mb-2">
+          <strong>${p.nombres} ${p.apellidos}</strong> - $${p.total} - <em>${p.email}</em>
+          <ul class="list-unstyled mb-0">
+            ${p.productos.map(prod => `<li>${prod.nombre} x${prod.cantidad || 1}</li>`).join('')}
+          </ul>
+        </div>
+      `;
+      dashboardDiv.appendChild(div);
+    });
+  }
+
+  // ---------- PEDIDOS.HTML ----------
   const secciones = {
     iniciado: document.getElementById('iniciados-list'),
     confirmado: document.getElementById('confirmados-list'),
@@ -12,30 +30,30 @@ document.addEventListener('DOMContentLoaded', () => {
     reembolsado: document.getElementById('reembolsados-list')
   };
 
-  // Limpiar todas las secciones
-  Object.values(secciones).forEach(sec => sec.innerHTML = '');
+  // Limpiar secciones
+  Object.values(secciones).forEach(sec => {
+    if(sec) sec.innerHTML = '';
+  });
 
-  // Renderizar pedidos en la sección correspondiente
   pedidos.forEach(p => {
     const div = document.createElement('div');
     div.className = 'card p-2 mb-2';
     div.innerHTML = `
-      <strong>${p.nombre}</strong> - $${p.total} - <em>${p.email}</em>
+      <strong>${p.nombres} ${p.apellidos}</strong> - $${p.total} - <em>${p.email}</em>
       <ul class="list-unstyled mb-0">
-        ${p.productos.map(prod => `<li>${prod.nombre} x${prod.cantidad}</li>`).join('')}
+        ${p.productos.map(prod => `<li>${prod.nombre} x${prod.cantidad || 1}</li>`).join('')}
       </ul>
       <div class="mt-2">
         ${crearBotones(p.estado)}
       </div>
     `;
 
-    // Verificar que el estado exista en el objeto secciones
     if (secciones[p.estado]) {
       secciones[p.estado].appendChild(div);
     }
   });
 
-  // Función para crear botones según estado
+  // ---------- FUNCIONES ----------
   function crearBotones(estado) {
     switch (estado) {
       case 'iniciado':
@@ -52,9 +70,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Hacer que la función esté disponible globalmente
+  // Función global para cambiar estado
   window.cambiarEstado = (estadoActual, nuevoEstado) => {
-    let pedidos = JSON.parse(localStorage.getItem('pedidos')) || [];
+    const pedidos = JSON.parse(localStorage.getItem('pedidos')) || [];
     const index = pedidos.findIndex(p => p.estado === estadoActual);
     if (index !== -1) {
       pedidos[index].estado = nuevoEstado;
@@ -63,4 +81,3 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 });
-

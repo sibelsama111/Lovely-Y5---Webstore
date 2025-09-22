@@ -36,9 +36,13 @@ document.getElementById('form-venta').addEventListener('submit', function(e) {
   document.getElementById('confirmar-compra').addEventListener('click', () => {
     const cliente = {
       id: Date.now(),
-      nombre: document.getElementById('nombre').value,
-      email: document.getElementById('email').value,
+      rut: document.getElementById('rut').value,
+      nombres: document.getElementById('nombres').value,
+      apellidos: document.getElementById('apellidos').value,
+      email: document.getElementById('correo').value,
+      telefono: document.getElementById('telefono').value,
       direccion: document.getElementById('direccion').value,
+      direccion: document.getElementById('pais').value,
       productos: carrito,
       total,
       estado: "iniciado",

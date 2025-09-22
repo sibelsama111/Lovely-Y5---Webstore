@@ -13,10 +13,10 @@ async function cargarProductos() {
       div.className = "col-md-4 mb-4";
       div.innerHTML = `
         <div class="card shadow-sm">
-          <img src="img/${p.imagenes[0]}" class="card-img-top" alt="${p.nombre}">
+          <img src="img/${p.imagenes[0]}" class="card-img-top textodark" alt="${p.nombre}">
           <div class="card-body">
-            <h5 class="card-title">${p.nombre}</h5>
-            <p class="card-text">$${p.precio}</p>
+            <h5 class="card-title textodark">${p.nombre}</h5>
+            <p class="card-text textodark">$${p.precio}</p>
             <button class="btn btn-primary w-100" onclick="agregarAlCarrito('${p.codigo}')">Agregar al carrito</button>
           </div>
         </div>
