@@ -11,9 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const li = document.createElement("li");
     li.className = "nav-item d-flex align-items-center gap-2";
     li.innerHTML = `
-      <a href="perfil.html" class="fw-bold text-primary text-decoration-none">
-        Hola, ${usuarioActual.nombres}
-      </a>
+      <a href="perfil.html" class="link active fw-bold text-primary text-decoration-none">Hola, ${usuarioActual.nombres}</a>
       <button id="logoutBtn" class="btn btn-sm btn-outline-danger">Cerrar sesión</button>
     `;
     navList.appendChild(li);
@@ -27,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
         saludoCard.innerHTML = `
           <div class="card-body text-center">
             <h2 class="text-success">
-              Hola, <a href="perfil.html" class="text-decoration-none text-success fw-bold">
+              Hola, <a href="perfil.html" class="link active text-decoration-none text-success fw-bold">
                 ${usuarioActual.nombres}
               </a>! <3
             </h2>
