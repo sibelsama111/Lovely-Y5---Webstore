@@ -68,24 +68,8 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-document.getElementById('login-form').addEventListener('submit', function(e) {
-  e.preventDefault();
-
-  const email = document.getElementById('email').value.trim();
-  const password = document.getElementById('password').value.trim();
-
-  // Credenciales fijas de admin
-  const adminEmail = 'ja.torti@duocuc.cl';
-  const adminPass = 'Security-1012';
-
-  if(email === adminEmail && password === adminPass){
-    localStorage.setItem('adminLogin', JSON.stringify({email: adminEmail, nombre: 'Administrador'}));
-    window.location.href = 'admin/dashboard.html';
-  } else {
-    document.getElementById('login-mensaje').innerHTML = '<div class="alert alert-danger">Credenciales inválidas</div>';
-  }
-});
 </script>
+<script src="js/login.js"></script>
+<script src="js/registro.js"></script>
 </body>
 </html>
