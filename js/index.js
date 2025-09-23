@@ -11,7 +11,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const li = document.createElement("li");
     li.className = "nav-item d-flex align-items-center gap-2";
     li.innerHTML = `
-      <span class="fw-bold text-primary">Hola, ${usuarioActual.nombres}</span>
+      <a href="perfil.html" class="fw-bold text-primary text-decoration-none">
+        Hola, ${usuarioActual.nombres}
+      </a>
       <button id="logoutBtn" class="btn btn-sm btn-outline-danger">Cerrar sesión</button>
     `;
     navList.appendChild(li);
@@ -24,7 +26,11 @@ document.addEventListener("DOMContentLoaded", () => {
         saludoCard.className = "card shadow-lg border-0 p-3 mt-3";
         saludoCard.innerHTML = `
           <div class="card-body text-center">
-            <h2 class="text-success">Hola, ${usuarioActual.nombres}! <3</h2>
+            <h2 class="text-success">
+              Hola, <a href="perfil.html" class="text-decoration-none text-success fw-bold">
+                ${usuarioActual.nombres}
+              </a>! <3
+            </h2>
           </div>
         `;
         hero.insertAdjacentElement("afterend", saludoCard);
