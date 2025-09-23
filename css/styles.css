@@ -5,27 +5,23 @@
   --light-bg: #fff4f8;
 }
 
-.title-button {
+.title-link {
   display: inline-flex;
   align-items: center;
-  gap: 8px;              /* separación entre icono y texto */
-  padding: 8px 16px;
-  background-color: #222;
-  color: #fff;
-  text-decoration: none;
-  font-weight: bold;
-  border-radius: 6px;
-  transition: background 0.3s;
+  gap: 4px;         /* espacio entre ícono y texto */
+  color: var(--primary);   /* usa el color del texto normal */
+  text-decoration: none; /* sin subrayado, opcional */
 }
 
-.title-button:hover {
-  background-color: #444;
+.title-link:hover {
+  text-decoration: underline; /* subrayado al pasar el mouse */
 }
 
 .title-icon {
-  width: 20px;   /* ajusta tamaño según quieras */
+  width: 20px;
   height: 20px;
 }
+
 
 /* Hero */
 .hero {
