@@ -23,19 +23,13 @@ Incluye vistas de inicio, listado de productos, detalle, carrito de compras con 
 
 
 
-**Instalación y ejecución local**
+**Cómo interactuar con este proyecto**
 
-Abrir repositorio en VS Code.
+Debe acceder al siguiente enlace:
 
-Instalar Live Server en VS Code (extensión).
+https://lovely-y5.vercel.app/
 
-Abrir el proyecto en VS Code → botón derecho en index.html → Open with Live Server.
-
-Acceder desde el navegador:
-
-http://localhost:5500/index.html
-
-Listo para funcionar :)
+Listo para usar :)
 ------
 
 
