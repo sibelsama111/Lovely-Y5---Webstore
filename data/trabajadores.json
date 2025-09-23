@@ -1,0 +1,15 @@
+[
+  {
+    "rut": "20954384-2",
+    "nombres": "Sibel",
+    "apellidos": "Sama",
+    "correo": "admin@lovely.cl",
+    "codigo-area":"+56",
+    "telefono": 989598097,
+    "password": "Trans.1111",
+    "direccion": "Ossandon #401, Valparaiso",
+    "pais": "Chile",
+    "categoria": "admin",
+    "sueldo": 120000
+  }
+]

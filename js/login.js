@@ -1,4 +1,13 @@
-// Manejo del formulario de login
+let usuariosJSON = [];
+
+// Cargar JSON de usuarios
+fetch("data/clientes.json")
+  .then(response => response.json())
+  .then(data => {
+    usuariosJSON = data;
+  })
+  .catch(err => console.error("Error cargando JSON:", err));
+
 document.getElementById('loginForm').addEventListener('submit', function(e) {
   e.preventDefault();
 
@@ -14,18 +23,31 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
   // Revisar si es admin
   if (correo === admin.correo && password === admin.password) {
     alert('¡Bienvenido Admin!');
-    window.location.href = 'admin/dashboard.html'; // Redirige al dashboard
+    window.location.href = 'admin/dashboard.html';
     return;
   }
 
   // Usuarios normales almacenados en localStorage
-  const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
-  const usuario = usuarios.find(u => u.correo === correo && u.password === password);
+  const usuariosLS = JSON.parse(localStorage.getItem('usuarios')) || [];
+  const usuarioLS = usuariosLS.find(u => u.correo === correo && u.password === password);
 
-  if (usuario) {
-    alert(`¡Bienvenido ${usuario.nombres}!`);
-    window.location.href = 'intranet.html'; // Redirige a intranet normal
-  } else {
-    alert('Credenciales incorrectas');
+  // Cuando sea cliente
+if (usuarioLS && usuarioLS.categoria === "cliente") {
+    localStorage.setItem('usuarioActual', JSON.stringify(usuarioLS));
+    alert(`¡Bienvenido ${usuarioLS.nombres}!`);
+    window.location.href = 'index.html'; // redirige al index
+    return;
+}
+
+
+  // Revisar usuarios del JSON
+  const usuarioJSON = usuariosJSON.find(u => u.correo === correo && u.password === password);
+  if (usuarioJSON) {
+    alert(`¡Bienvenido ${usuarioJSON.nombres} ${usuarioJSON.apellidos}!`);
+    window.location.href = 'intranet.html';
+    return;
   }
+
+  alert('Credenciales incorrectas');
 });
+
