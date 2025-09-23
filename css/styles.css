@@ -5,6 +5,12 @@
   --light-bg: #fff4f8;
 }
 
+.site-logo {
+  margin: 0; /* quita espacio por defecto */
+  font-size: 2.375rem; /* tamaño del texto del logo */
+  font-weight: bold;
+}
+
 .title-link {
   display: inline-flex;
   align-items: center;
