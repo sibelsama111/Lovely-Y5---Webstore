@@ -4,6 +4,9 @@ async function cargarProductos() {
     const res = await fetch('data/ProductosDisponibles.json');
     const productos = await res.json();
 
+    const formatoCLP = new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP' , minimumFractionDigits: 0 });
+    document.getElementById('p.precio').textContent = formatoCLP.format(p.precio);
+
     const container = document.getElementById('productosContainer');
     container.innerHTML = ''; // Limpiar contenedor
 
@@ -16,7 +19,7 @@ async function cargarProductos() {
           <img src="img/${p.imagenes[0]}" class="card-img-top textodark" alt="${p.nombre}">
           <div class="card-body">
             <h5 class="card-title textodark">${p.nombre}</h5>
-            <p class="card-text textodark">$${p.precio}</p>
+            <p class="card-text textodark">${p.precio}</p>
             <button class="btn btn-primary w-100" onclick="agregarAlCarrito('${p.codigo}')">Agregar al carrito</button>
           </div>
         </div>
